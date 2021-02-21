@@ -1,9 +1,4 @@
 
-const bankDetailCSS = {
-    display: 'flex', 
-    flexDirection: 'row', 
-  };
-  
 const metalPlateCSS = {
     display: 'flex',  
     height: '90px',

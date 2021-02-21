@@ -1,4 +1,4 @@
-import React, { Button, useState } from 'react';
+import React, { useState } from 'react';
 import { FirstNameInput } from './FirstNameInput.js'; 
 import { LastNameInput } from './LastNameInput.js'; 
 import { CardNumberInput } from './CardNumberInput.js'; 
@@ -6,31 +6,6 @@ import { CreditCard } from './CreditCard.js';
 import { CCVInput } from './CCVInput.js'; 
 import { ExpiryDateInput } from './ExpiryDateInput.js'; 
 import './App.css';
-
-/*
-  Write JavaScript/React code here and press Ctrl+Enter to execute.
-
-  Try: mountNode.innerHTML = 'Hello World!';
-   Or: ReactDOM.render(<h2>Hello React!</h2>, mountNode);
-*/
-
-/*
-
-const testBox = () => {
-    const [change, setChange] = useState(true);       
-    return ( 
-        <div> 
-        <button onClick = {() => setChange(!change)}> 
-          Click Here! 
-        </button> 
-        {change?<h1>Welcome to GeeksforGeeks</h1>: 
-                <h1>A Computer Science Portal for Geeks</h1>} 
-        </div> 
-    ); 
-}
-*/
-
-
 
 const formOuterCSS = {
   display: 'flex', 
@@ -65,7 +40,7 @@ const CreditCardForm = () => {
     const size = cardNum.length; 
     let insertions = [];
     for(let i=0;i<size;i++){
-      if(i%4 == 0 && i > 0) {
+      if(i%4 === 0 && i > 0) {
         insertions.push(i);
       }
     }
@@ -81,16 +56,14 @@ const CreditCardForm = () => {
     let val= event.target.value;
     // Filter out non-numbers
     val = val.replace(/[^0-9]/g, "");
-    console.log("CLEANED INPUT " + val);
     val = formatCardNumber(String(val));
-    console.log("SOZE " + val.length );
     if(val.length > 19) val = val.substr(0, 19);
     setCardNum(val);
   }
 
   const firstNameHandler = (event) => {
     let val= event.target.value;
-    // Filter out non-numbers
+    // Filter characters
     val = val.replace(/[^a-zA-Z]/g, "");
     val = val.toUpperCase();
     setFirstName(val);
@@ -99,7 +72,7 @@ const CreditCardForm = () => {
 
   const lastNameHandler = (event) => {
     let val= event.target.value;
-    // Filter out non-numbers
+    // Filter characters
     val = val.replace(/[^a-zA-Z]/g, "");
     val = val.toUpperCase();
     setLastName(val);
@@ -115,21 +88,22 @@ const CreditCardForm = () => {
   
   const expDateHandler = (event) => {
     let val= event.target.value;
+    // Filter out non-numbers
     val = val.replace(/[^0-9]/g, "");
     if(val.length >= 2) {
       val = val.substring(0, 2) + '/' + val.substring(2, val.length);
     } else {
       val += '/';
     }
+    // Trim back to acceptable size
     if(val.length > 7) val = val.substr(0, 7);
-    // Filter out non-numbers
     setExpDate(val);
   }
 
   return (
     <form>
       <h1>Credit Card</h1>
-      <CreditCard bankName={bankName} cardName={cardNum} expiryDate={expDate} firstName={firstName} lastName = {lastName}/>
+      <CreditCard bankName={bankName} cardNumber={cardNum} expiryDate={expDate} firstName={firstName} lastName = {lastName}/>
       <div style={formOuterCSS}> 
         <CardNumberInput number={cardNum} action={cardNumberHandler}/>
         <div style={namesCSS}> 
