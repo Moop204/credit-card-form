@@ -1,24 +1,21 @@
-import {textCSS, inputCSS, individualInputCSS} from './form.js'
+import { textCSS, inputCSS, individualInputCSS } from "./form.js";
 
 const FirstNameInput = (props) => {
-    const name = props.name;
-    const action = props.action;
-  
-  
-    return ( 
-      <div style={individualInputCSS}>       
-        <p style={textCSS}>First Name *</p>
-        <input
-          type="text"
-          name="firstName"
-          required
-          onChange={action}
-          value={name}
-          style={inputCSS}
+  const name = props.name;
+  const action = props.action;
 
-        />
-      </div>
-    );
-}
+  return (
+    <div style={individualInputCSS}>
+      <p style={textCSS}>First Name *</p>
+      <input
+        {...props}
+        type="text"
+        name="firstName"
+        required
+        style={inputCSS}
+      />
+    </div>
+  );
+};
 
-export {FirstNameInput};
+export { FirstNameInput };

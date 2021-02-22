@@ -1,55 +1,77 @@
+import chip from "./media/credit-card-chip.svg";
 
 const metalPlateCSS = {
-    display: 'flex',  
-    height: '90px',
-    width: '80px',
-    background: 'yellow',
+  height: "50px",
+  width: "auto",
+  background: "yellow",
+  borderRadius: "4px",
 };
 
 const indentCSS = {
-    display: 'flex',
-    flexDirection: 'column',
-    paddingLeft: '40px',
-    alignItems: 'flex-start'    
-}
-
-const creditCardCSS = {
-    background: '#046296',
-    flexDirection: 'column',
-    display: 'flex',
-    borderStyle: 'groove',
-    paddingTop: '20px',
-    paddingBottom: '20px',
-    paddingLeft: '30px',
-    paddingRight: '10px',
-    width: '100vmin',
-    alignItems: 'flex-start',    
-    borderRadius: '20px',
-    maxWidth: ''
+  flexDirection: "column",
+  paddingLeft: "40px",
 };
 
+const creditCardCSS = {
+  background: "#046296",
+  borderStyle: "groove",
+  padding: "24px",
+  paddingTop: "48px",
+  borderRadius: "20px",
+  maxWidth: "512px",
+  maxHeight: "384px",
+  width: "90%",
+  marginLeft: "40px",
+  marginRight: "40px",
+};
+
+const cvvStyle = {
+  paddingTop: "40px",
+};
+
+const blackBar = {
+  background: "#000000",
+  height: "40px",
+  width: "100%",
+};
+
+const cardStyle = {
+  letterSpacing: "5px",
+  textShadow: "1px 1px 2px",
+  fontSize: "150%",
+};
+
+const expiryStyle = {
+  letterSpacing: "3px",
+  textShadow: "1px 1px 2px",
+  fontSize: "90%",
+};
 
 const CreditCard = (props) => {
-    const bankName = props.bankName;
-    const cardNum = props.cardNumber;
-    const expDate = props.expiryDate;
-    const firstName = props.firstName;
-    const lastName = props.lastName;
-
+  const { cardNumber, expiryDate, firstName, lastName, cvv, cardFace } = props;
+  if (cardFace) {
     return (
-    <div style={creditCardCSS}>  
-        <p> {bankName} </p>
-        <div style={indentCSS}> 
-            <div style={metalPlateCSS} />
-            <p> {cardNum} </p>
-            <div style={indentCSS}> 
-                <p> Expiry: {expDate} </p>
-                <p> {firstName} {lastName} </p>            
-            </div>
+      <div style={creditCardCSS}>
+        <div style={indentCSS}>
+          <img src={chip} style={metalPlateCSS} />
+          <p style={cardStyle}> {cardNumber} </p>
+          <div style={indentCSS}>
+            <label>Expiry </label>
+            <p style={expiryStyle}> {expiryDate} </p>
+          </div>
+          <p style={cardStyle}>
+            {firstName} {lastName}
+          </p>
         </div>
-    </div>
+      </div>
     );
+  }
+  return (
+    <div style={creditCardCSS}>
+      <div style={blackBar}></div>
+      <div style={cvvStyle}>{cvv}</div>
+    </div>
+  );
+};
 
-}
-
-export {CreditCard};
+export { CreditCard };
