@@ -1,14 +1,22 @@
 import { textCSS, inputCSS, individualInputCSS } from "./form.js";
+import styled from "styled-components";
 
 const ExpiryDateInput = (props) => {
   const expDate = props.expiry;
   const action = props.action;
 
+  const StyledExpiryDate = styled.input`
+    width: 110px;
+  `;
+
   return (
     <div style={individualInputCSS}>
-      <p style={textCSS}>Expiration Date *</p>
-      <input
+      <label htmlFor="expiryDate" style={textCSS}>
+        Expiration Date *
+      </label>
+      <StyledExpiryDate
         {...props}
+        id="expiryDate"
         type="month"
         name="expire"
         required

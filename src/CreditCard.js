@@ -16,13 +16,15 @@ const creditCardCSS = {
   background: "#046296",
   borderStyle: "groove",
   padding: "24px",
-  paddingTop: "48px",
+  paddingTop: "72px",
   borderRadius: "20px",
-  maxWidth: "512px",
+  maxWidth: "630px",
   maxHeight: "384px",
-  width: "90%",
   marginLeft: "40px",
   marginRight: "40px",
+  position: "absolute",
+  top: "30%",
+  left: "30%",
 };
 
 const cvvStyle = {

@@ -5,20 +5,25 @@ import { CardNumberInput } from "./CardNumberInput.js";
 import { CreditCard } from "./CreditCard.js";
 import { CCVInput } from "./CCVInput.js";
 import { ExpiryDateInput } from "./ExpiryDateInput.js";
+import styled from "styled-components";
+import { NavBar } from "./NavBar.js";
+
 import "./App.css";
+import "./NavBar.js";
 
 const formOuterCSS = {
   display: "flex",
   flexDirection: "column",
   background: "#D8CEC9",
-  paddingTop: "30px",
+  paddingTop: "300px",
   paddingBottom: "30px",
   paddingLeft: "40px",
   paddingRight: "40px",
   marginTop: "100px",
-  marginLeft: "3%",
-  marginRight: "3%",
+  marginLeft: "30%",
+  marginRight: "30%",
   borderRadius: "10px",
+  position: "absolute",
 };
 
 const namesCSS = {
@@ -128,17 +133,23 @@ const CreditCardForm = () => {
     setShowFront(true);
   };
 
+  const handleSubmit = (event) => {
+    console.log("SUBMITTED!");
+    console.log("Card Number " + { cardNum });
+    console.log("Expiry Date " + { expDate });
+    console.log("Name " + { firstName } + " " + { lastName });
+    console.log("CVV " + { cvv });
+  };
+
+  const CentredCard = styled.div`
+    diplay: flex;
+    justify-content: center;
+    background-color: black;
+  `;
+
   return (
     <div style={flexStyle}>
-      <h1>Credit Card</h1>
-      <CreditCard
-        cardNumber={cardNum}
-        expiryDate={expDate}
-        firstName={firstName}
-        lastName={lastName}
-        cvv={cvv}
-        cardFace={showFront}
-      />
+      <NavBar />
       <form>
         <div style={formOuterCSS}>
           <CardNumberInput
@@ -158,18 +169,31 @@ const CreditCardForm = () => {
               onFocus={handleLastNameFocus}
             />
           </div>
-          <CCVInput
-            value={cvv}
-            onChange={cvvHandler}
-            onFocus={handleCvvFocus}
-          />
-          <ExpiryDateInput
-            value={expDate}
-            onChange={expDateHandler}
-            onFocus={handleExpDateFocus}
-          />
+          <div style={namesCSS}>
+            <CCVInput
+              value={cvv}
+              onChange={cvvHandler}
+              onFocus={handleCvvFocus}
+            />
+            <ExpiryDateInput
+              value={expDate}
+              onChange={expDateHandler}
+              onFocus={handleExpDateFocus}
+            />
+            <button onSubmit={handleSubmit}>Submit</button>
+          </div>
         </div>
       </form>
+      <CentredCard>
+        <CreditCard
+          cardNumber={cardNum}
+          expiryDate={expDate}
+          firstName={firstName}
+          lastName={lastName}
+          cvv={cvv}
+          cardFace={showFront}
+        />
+      </CentredCard>
     </div>
   );
 };

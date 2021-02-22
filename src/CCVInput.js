@@ -2,7 +2,7 @@ import { textCSS, inputCSS, individualInputCSS } from "./form.js";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-  width: 70px;
+  width: 75px;
 `;
 
 const CCVInput = (props) => {

@@ -3,9 +3,12 @@ import { textCSS, inputCSS, individualInputCSS } from "./form.js";
 const CardNumberInput = (props) => {
   return (
     <div style={individualInputCSS}>
-      <p style={textCSS}>Card Number *</p>
+      <label htmlFor="cardNumber" style={textCSS}>
+        Card Number *
+      </label>
       <input
         {...props}
+        id="cardNumber"
         type="text"
         name="cardNumber"
         maxlength="20"

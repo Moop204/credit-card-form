@@ -8,6 +8,7 @@ const individualInputCSS = {
   paddingLeft: "10px",
   paddingRight: "10px",
   justifyContent: "flex-start",
+  minWidth: "48px",
 };
 
 const inputCSS = {

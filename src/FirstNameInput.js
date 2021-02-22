@@ -6,9 +6,12 @@ const FirstNameInput = (props) => {
 
   return (
     <div style={individualInputCSS}>
-      <p style={textCSS}>First Name *</p>
+      <label htmlFor="firstName" style={textCSS}>
+        First Name *
+      </label>
       <input
         {...props}
+        id="firstName"
         type="text"
         name="firstName"
         required
